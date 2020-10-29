@@ -38,16 +38,7 @@ def ajaxx(request):
     else:
         print('8')
         return render(request , 'blog/index.html' , {'check_fingerprint':False})
-        
 
-def about(request):
-    return render(request, 'blog/about.html', {})
-
-def contact(request):
-    return render(request, 'blog/contact.html', {})
-
-def test(request):
-    return render(request, 'blog/default.html', {})
 
 def signup(request):
     if request.method == "POST":
