@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>عضویت</title>
+	<!-- start css and styles -->
+	<link rel="stylesheet" href="/static/css/font-awesome.min.css">
+	<link type="text/css" href="/static/css/signstyle.css" rel="stylesheet" />
+    <!-- end css and styles -->
+	<link rel="shortcut icon" href="">
+	<style>
+		body {
+		  background-image: url("/static/pics/photo-02.jpg");
+		}
+		</style>
+</head>
+<body>
+	<p> </p>
+					<li class="tm-nav-item active">
+						<button class="ghost" style="background: rosybrown;" > <a  href="{% url 'index' %}">صفحه نخست</a></button>
+					</li>
+					<p> </p>
+	<div class="container left-panel-active" id="container">
+		<!-- start sing up form -->
+		<div class="form-container sign-up-container">
+			<form method="POST" action = "{% url 'signup'%}">
+				{% csrf_token%}
+				<h1>ایجاد حساب</h1>
+				<span> با ایمیل خود حساب ایجاد کنید</span>
+					<div class="form-group">
+					{{form.username}}
+				  </div>
+				  {% if form.username.errors %}
+				  <p style="color: red">
+					{% for error in form.username.errors %}
+					{{ error }}
+					{% endfor %}
+				</p>
+				{% endif %}
+					<div class="form-group">
+					{{form.email }}
+				  </div>
+				{% if form.email.errors %}
+				  <p style="color: red">
+					{% for error in form.email.errors %}
+					{{ error }}
+					{% endfor %}
+				</p>
+				{% endif %}
+					<div class="form-group">
+					{{form.password1 }}
+				  </div>
+				  {% if form.password1.errors %}
+				  <p style="color: red">
+					{% for error in form.password1.errors %}
+					{{ error }}
+					{% endfor %}
+				</p>
+				{% endif %}
+
+					<div class="form-group">
+					{{form.password2 }}
+					</div>
+				{% if form.password2.errors %}
+					<p style="color: red">
+					{% for error in form.password2.errors %}
+					{{ error }}
+					{% endfor %}
+					</p>
+				{% endif %}
+				  <div class="form-group">
+					<input  type="hidden" name="browserfingerprint" value="" id="browserfingerprint">
+				</div>
+				<button type="submit">عضویت</button> 
+			</form>
+		</div>
+
+		<div class="overlay-container">
+			<div class="overlay">
+				<!-- start sing in overlay -->
+				<div class="overlay-panel overlay-right">
+					<h1>خوش آمدید</h1>
+					<p>برای برقراری ارتباط با ما لطفا حساب کاربری خود را ایجاد کنید</p>
+					<button class="ghost" id="signIn"> <a  style="  color: white;" href="{% url 'sign_in' %}">ورود</a></button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<!-- browser fingerprint script -->
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="/static/bf/dist/imprint.min.js"></script>
+<script type="text/javascript">
+
+  var browserTests = [
+      "audio",
+      "availableScreenResolution",
+      "canvas",
+      "colorDepth",
+      "cookies",
+      "cpuClass",
+      "deviceDpi",
+      "doNotTrack",
+      "indexedDb",
+      "installedFonts",
+      //"installedLanguages",
+      "language",
+      "localIp",
+      "localStorage",
+      "pixelRatio",
+      "platform",
+      "plugins",
+      "processorCores",
+      "screenResolution",
+      "sessionStorage",
+      "timezoneOffset",
+      "touchSupport",
+      "userAgent",
+      "webGl"
+    ];
+
+  console.time('getImprint 1');
+  imprint.test(browserTests).then(function(result){
+    console.timeEnd('getImprint 1');
+    // document.getElementById("browserFingerprint").innerHTML = result;
+    $('#browserfingerprint').val(result);
+  });
+
+</script>
+<!-- END browser fingerprint script -->
+
+	<!-- start javascript -->
+	<!-- <script  src="/static/js/signscripts.js"></script> -->
+</body><!-- This template has been downloaded from Webrubik.com -->
+</html>

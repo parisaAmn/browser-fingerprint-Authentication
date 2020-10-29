@@ -76,10 +76,10 @@ def signup(request):
             return redirect('index')
         else:
             print('form is not valid')
-            return render(request, 'blog/signup2.html', {'form': form})
+            return render(request, 'blog/signup.html', {'form': form})
     else:
         form = SignUpForm()
-        return render(request, 'blog/signup2.html', {'form': form})
+        return render(request, 'blog/signup.html', {'form': form})
 
 def sign_in(request):
     if request.method == 'POST':
@@ -135,14 +135,14 @@ def sign_in(request):
                 return redirect('index')
                 # return render(request , "blog/index.html", {'check_fingerprint':False})
             else:
-                messages.error(request, "Invalid username or password.")
-                return render(request, 'blog/sign_in.html', {'form': form})
+                messages.error(request, "نام کاربری یا رمز عبور معتبر نیست")
+                return render(request, 'blog/signin.html', {'form': form})
         else:
-            messages.error(request, "Invalid username or password.")
-            return render(request, 'blog/sign_in.html', {'form': form})
+            messages.error(request, "نام کاربری یا رمز عبور معتبر نیست")
+            return render(request, 'blog/signin.html', {'form': form})
     else:
         form = SignInForm()
-    return render(request, 'blog/sign_in.html', {'form': form})
+    return render(request, 'blog/signin.html', {'form': form})
 
 def signout(request):
     print('sign out func:')
